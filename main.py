@@ -1,10 +1,17 @@
 import extractor
+import analyzer
 
-dados = extractor.extract()
-print(dados["date"])
-print(dados["from"])
-print(dados["to"])
-print(dados["subject"])
-print(dados["return-path"])
-print(dados["body"])
-print(dados["authentication-results"])
+data = extractor.extract("Samples/email.eml")      
+
+print("Date:", data["date"])
+print("From:", data["from"])
+print("To:", data["to"])
+print("Subject:", data["subject"])
+print("Return-path:", data["return-path-email"])
+print("--Received Data--",)
+for jump in data["jumps"]:  
+    print(jump["from"], "->", jump["by"])
+    print(jump["ip"])
+    print(jump["date"])
+print("-----------------")
+print("From matches Return-path:", analyzer.return_path_matches_from(data))
