@@ -8,6 +8,7 @@ print("From:", data["from"])
 print("To:", data["to"])
 print("Subject:", data["subject"])
 print("Return-path:", data["return-path-email"])
+print("Reply-to:", data["reply-to"])
 print("--Received Data--",)
 for jump in data["jumps"]:  
     print(jump["from"], "->", jump["by"])
@@ -15,3 +16,5 @@ for jump in data["jumps"]:
     print(jump["date"])
 print("-----------------")
 print("From matches Return-path:", analyzer.return_path_matches_from(data))
+print("From matches Reply-To:", analyzer.reply_to_matches_from(data))
+analyzer.auth_analyzer(data)
